@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovement : NetworkBehaviour
 {
     [Header("Movimento")]
-    public float speed = 6f;
+    public float speed = 7f;
 
     [Header("Mouse")]
     public float mouseSensitivity = 2f;
@@ -12,11 +12,13 @@ public class PlayerMovement : NetworkBehaviour
     [Header("Pulo")]
     public float jumpForce = 7f;
 
+    [Header("Refer�ncias")]
+    public Transform cameraHolder;
+    public Camera playerCamera;
+
     private Rigidbody rb;
 
-    private float cameraRotationX = 0f;
-
-    public Camera playerCamera;
+    private float xRotation;
 
     private bool isGrounded;
 
@@ -37,48 +39,64 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
+    void Update()
+    {
+        if (!Object.HasInputAuthority)
+            return;
+
+        MouseLook();
+    }
+
     public override void FixedUpdateNetwork()
     {
         if (!Object.HasInputAuthority)
             return;
 
         Move();
-        Look();
-        JumpCheck();
+        Jump();
     }
 
     void Move()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxisRaw("Vertical");
 
         Vector3 move =
-            transform.forward * v +
-            transform.right * h;
+            transform.right * x +
+            transform.forward * z;
+
+        move.Normalize();
 
         Vector3 velocity = move * speed;
 
+        // Mant�m a velocidade vertical do pulo/gravidade
         velocity.y = rb.linearVelocity.y;
 
         rb.linearVelocity = velocity;
     }
 
-    void Look()
+    void MouseLook()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float mouseX =
+            Input.GetAxis("Mouse X") * mouseSensitivity;
 
+        float mouseY =
+            Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+        // Esquerda e direita
         transform.Rotate(Vector3.up * mouseX);
 
-        cameraRotationX -= mouseY;
+        // Cima e baixo
+        xRotation -= mouseY;
 
-        cameraRotationX = Mathf.Clamp(cameraRotationX, -80f, 80f);
+        // Limita a vis�o vertical
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        playerCamera.transform.localRotation =
-            Quaternion.Euler(cameraRotationX, 0f, 0f);
+        cameraHolder.localRotation =
+            Quaternion.Euler(xRotation, 0f, 0f);
     }
 
-    void JumpCheck()
+    void Jump()
     {
         isGrounded = Physics.Raycast(
             transform.position,
@@ -88,8 +106,10 @@ public class PlayerMovement : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce,
-                ForceMode.Impulse);
+            rb.AddForce(
+                Vector3.up * jumpForce,
+                ForceMode.Impulse
+            );
         }
     }
 }
