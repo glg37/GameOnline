@@ -158,3 +158,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937d63d030f9dd948b5a23cad8cc3274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleMultiplayer
+  runnerPrefab: {fileID: 4205123310691117728}
