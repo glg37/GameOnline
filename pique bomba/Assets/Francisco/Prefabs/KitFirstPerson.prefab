@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 2046337890671048197}
   - component: {fileID: 92415436426651498}
   - component: {fileID: 3050251355786739241}
+  - component: {fileID: 4994060331494663035}
   m_Layer: 0
   m_Name: KitFirstPerson
   m_TagString: Untagged
@@ -100,6 +101,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 3050251355786739241}
+  - {fileID: 4994060331494663035}
   - {fileID: 3778523916336156718}
   - {fileID: 3886688283282345724}
   - {fileID: 8412445892580568331}
@@ -118,6 +120,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerNickname
   nomeTexto: {fileID: 8220262364130968478}
   _NomeJogador: 
+--- !u!114 &4994060331494663035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7582904416865744837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkTransform
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &9070264981624897178
 GameObject:
   m_ObjectHideFlags: 0

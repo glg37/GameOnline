@@ -120,6 +120,10 @@ namespace StarterAssets
 
         public override void FixedUpdateNetwork()
         {
+            if (_controller == null || _input == null)
+                return;
+            if (_controller == null || _input == null)
+                return;
             JumpAndGravity();
             GroundedCheck();
             Move();
