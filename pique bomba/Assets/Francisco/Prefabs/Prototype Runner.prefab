@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
   playerPrefab:
-    RawGuidValue: 1a0520dfb2b8cb246a5bc09e670b40af
+    RawGuidValue: b7d0ed409054e6b4cacab98681974d23
 --- !u!114 &3241248960170364994
 MonoBehaviour:
   m_ObjectHideFlags: 0
