@@ -28,7 +28,7 @@ public class MultiplayerMenu : MonoBehaviour
 
     void Start()
     {
-        // Painéis começam fechados
+        
         if (painelSala != null)
         {
             painelSala.SetActive(false);
@@ -40,9 +40,7 @@ public class MultiplayerMenu : MonoBehaviour
         }
     }
 
-    // =====================================================
-    // ABRIR PAINEL SALA
-    // =====================================================
+    
 
     public void AbrirPainelSala()
     {
@@ -51,9 +49,7 @@ public class MultiplayerMenu : MonoBehaviour
         animatorSala.SetTrigger("Abrir");
     }
 
-    // =====================================================
-    // FECHAR PAINEL SALA
-    // =====================================================
+
 
     public void FecharPainelSala()
     {
@@ -67,9 +63,7 @@ public class MultiplayerMenu : MonoBehaviour
         painelSala.SetActive(false);
     }
 
-    // =====================================================
-    // ABRIR CRÉDITOS
-    // =====================================================
+
 
     public void AbrirCreditos()
     {
@@ -78,9 +72,7 @@ public class MultiplayerMenu : MonoBehaviour
         animatorCreditos.SetTrigger("Abrir");
     }
 
-    // =====================================================
-    // FECHAR CRÉDITOS
-    // =====================================================
+
 
     public void FecharCreditos()
     {
@@ -94,13 +86,10 @@ public class MultiplayerMenu : MonoBehaviour
         painelCreditos.SetActive(false);
     }
 
-    // =====================================================
-    // CRIAR SALA
-    // =====================================================
 
     public async void CriarSala()
     {
-        // Nome jogador
+        
         string nomeJogador = inputNome.text;
 
         if (string.IsNullOrWhiteSpace(nomeJogador))
@@ -108,7 +97,7 @@ public class MultiplayerMenu : MonoBehaviour
             nomeJogador = "Player";
         }
 
-        // Nome sala
+        
         string nomeSala = inputCriarSala.text;
 
         if (string.IsNullOrWhiteSpace(nomeSala))
@@ -117,15 +106,15 @@ public class MultiplayerMenu : MonoBehaviour
             return;
         }
 
-        // Salvar nome
+       
         PlayerPrefs.SetString("PlayerName", nomeJogador);
 
-        // Criar runner
+       
         runner = Instantiate(runnerPrefab);
 
         runner.ProvideInput = true;
 
-        // Criar sala
+        
         var result = await runner.StartGame(new StartGameArgs()
         {
             GameMode = GameMode.Shared,
@@ -143,13 +132,11 @@ public class MultiplayerMenu : MonoBehaviour
         }
     }
 
-    // =====================================================
-    // ENTRAR NA SALA
-    // =====================================================
+   
 
     public async void EntrarSala()
     {
-        // Nome jogador
+      
         string nomeJogador = inputNome.text;
 
         if (string.IsNullOrWhiteSpace(nomeJogador))
@@ -157,7 +144,6 @@ public class MultiplayerMenu : MonoBehaviour
             nomeJogador = "Player";
         }
 
-        // Código sala
         string nomeSala = inputEntrarSala.text;
 
         if (string.IsNullOrWhiteSpace(nomeSala))
@@ -166,15 +152,15 @@ public class MultiplayerMenu : MonoBehaviour
             return;
         }
 
-        // Salvar nome
+       
         PlayerPrefs.SetString("PlayerName", nomeJogador);
 
-        // Criar runner
+     
         runner = Instantiate(runnerPrefab);
 
         runner.ProvideInput = true;
 
-        // Entrar sala
+       
         var result = await runner.StartGame(new StartGameArgs()
         {
             GameMode = GameMode.Shared,
@@ -185,7 +171,6 @@ public class MultiplayerMenu : MonoBehaviour
 
             SceneManager = runner.GetComponent<NetworkSceneManagerDefault>(),
 
-            // NÃO cria sala automaticamente
             EnableClientSessionCreation = false
         });
 
@@ -195,9 +180,6 @@ public class MultiplayerMenu : MonoBehaviour
         }
     }
 
-    // =====================================================
-    // SAIR DO JOGO
-    // =====================================================
 
     public void SairJogo()
     {
