@@ -110,6 +110,13 @@ namespace StarterAssets
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 		}
+        public override void Spawned()
+        {
+            if (!Object.HasInputAuthority)
+            {
+                enabled = false;
+            }
+        }
 
         public override void FixedUpdateNetwork()
         {
