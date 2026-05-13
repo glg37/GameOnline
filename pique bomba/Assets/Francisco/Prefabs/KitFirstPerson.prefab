@@ -343,7 +343,6 @@ MonoBehaviour:
   - {fileID: 3778523916336156718}
   - {fileID: 3886688283282345724}
   - {fileID: 8412445892580568331}
-  - {fileID: 7686938981449950529}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &3050251355786739241
 MonoBehaviour:
@@ -603,18 +602,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046337890671048197}
     m_Modifications:
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-      propertyPath: MoveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-      propertyPath: SprintSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-      propertyPath: RotationSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_Name
       value: PlayerCapsule
@@ -680,17 +667,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
   m_PrefabInstance: {fileID: 4784182105559640239}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7686938981449950529 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2939067149781880302, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-  m_PrefabInstance: {fileID: 4784182105559640239}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7abb0c2500e47c14da4814312e7cd6ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractions
 --- !u!114 &8412445892580568331 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3952989154213414308, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
