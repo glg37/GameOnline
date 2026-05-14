@@ -478,7 +478,7 @@ MonoBehaviour:
   - {fileID: 92273979}
   - {fileID: 498020937}
   - {fileID: 2084241537}
-  maxJogadores: 1
+  maxJogadores: 2
   tempoLiberarBotao: 1
   minJogadoresParaStart: 1
 --- !u!4 &144019824
@@ -1721,7 +1721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1627854417
 RectTransform:
   m_ObjectHideFlags: 0

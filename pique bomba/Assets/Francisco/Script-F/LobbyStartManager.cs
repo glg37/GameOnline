@@ -17,7 +17,7 @@ public class LobbyStartManager : MonoBehaviour
     public Button[] botoesCores;
 
     [Header("Config")]
-    public int maxJogadores = 4;
+    public int maxJogadores = 2;
     public float tempoLiberarBotao = 2f;
     public int minJogadoresParaStart = 1;
 
