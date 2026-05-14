@@ -25,7 +25,7 @@ public class SimpleMultiplayer : MonoBehaviour
         {
             GameMode = GameMode.Shared,
             SessionName = "MinhaSala",
-            Scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex),
+            Scene = SceneRef.FromIndex(1),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
     }
