@@ -1,24 +1,12 @@
 using Fusion;
 using UnityEngine;
 
-public class PlayerSpawner : NetworkBehaviour, IPlayerJoined
+public class PlayerSpawner : NetworkBehaviour
 {
     public NetworkPrefabRef playerPrefab;
 
-    public void PlayerJoined(PlayerRef player)
+    public override void Spawned()
     {
-        Debug.Log("Player entrou!");
-
-        if (player == Runner.LocalPlayer)
-        {
-            Debug.Log("Spawnando player local!");
-
-            Runner.Spawn(
-                playerPrefab,
-                new Vector3(0, 3, 0),
-                Quaternion.identity,
-                player
-            );
-        }
+            Runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, Runner.LocalPlayer);
     }
 }

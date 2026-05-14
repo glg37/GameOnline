@@ -1,8 +1,9 @@
 using Fusion;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MultiplayerMenu : MonoBehaviour
+public class MultiplayerMenu : NetworkBehaviour
 {
     [Header("Fusion")]
     public NetworkRunner runnerPrefab;
@@ -169,8 +170,7 @@ public class MultiplayerMenu : MonoBehaviour
             Scene = SceneRef.FromIndex(1),
 
             SceneManager = runner.GetComponent<NetworkSceneManagerDefault>(),
-
-            EnableClientSessionCreation = false
+            EnableClientSessionCreation = false,
         });
 
         if (result.Ok)
