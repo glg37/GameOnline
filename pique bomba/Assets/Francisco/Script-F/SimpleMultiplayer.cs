@@ -1,21 +1,32 @@
-using Fusion;
 using UnityEngine;
-using System.Threading.Tasks;
+using Fusion;
+using UnityEngine.SceneManagement;
 
 public class SimpleMultiplayer : MonoBehaviour
 {
-    private NetworkRunner runner;
+    public NetworkRunner runnerPrefab;
 
-    async void Start()
+    private static NetworkRunner runnerInstance;
+
+    async void Awake()
     {
-        runner = GetComponent<NetworkRunner>();
+        if (runnerInstance != null)
+        {
+            return;
+        }
 
-        await runner.StartGame(new StartGameArgs()
+        runnerInstance = Instantiate(runnerPrefab);
+
+        runnerInstance.ProvideInput = true;
+
+        DontDestroyOnLoad(runnerInstance.gameObject);
+
+        await runnerInstance.StartGame(new StartGameArgs()
         {
             GameMode = GameMode.Shared,
             SessionName = "MinhaSala",
-            Scene = SceneRef.FromIndex(0),
-            SceneManager = GetComponent<NetworkSceneManagerDefault>()
+            Scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex),
+            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
     }
 }
