@@ -74,9 +74,9 @@ public class PlayerMovement : NetworkBehaviour
         Vector3 velocity = move * speed;
 
         // mantém velocidade vertical
-        velocity.y = rb.velocity.y;
+        velocity.y = rb.linearVelocity.y;
 
-        rb.velocity = velocity;
+        rb.linearVelocity = velocity;
     }
 
     void MouseLook()
