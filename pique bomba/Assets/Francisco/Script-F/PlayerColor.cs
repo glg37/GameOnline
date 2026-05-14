@@ -31,14 +31,15 @@ public class PlayerColor : NetworkBehaviour
         if (playerRenderer == null)
             return;
 
-        if (CorIndex >= 0 && CorIndex < cores.Length)
-        {
-            playerRenderer.material.color = cores[CorIndex];
-        }
+        if (CorIndex < 0 || CorIndex >= cores.Length)
+            return;
+
+        playerRenderer.material.color = cores[CorIndex];
     }
 
-    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    public void RPC_EscolherCor(int index)
+    
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SetColor(int index)
     {
         CorIndex = index;
     }
