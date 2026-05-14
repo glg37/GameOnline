@@ -1,7 +1,7 @@
 using Fusion;
 using UnityEngine;
 
-public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
+public class PlayerSpawner : NetworkBehaviour, IPlayerJoined
 {
     public NetworkPrefabRef playerPrefab;
 
