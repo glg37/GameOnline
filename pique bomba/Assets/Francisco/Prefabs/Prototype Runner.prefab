@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4205123310691117728}
   - component: {fileID: 9781486231429858}
   - component: {fileID: 6540569550853608648}
-  - component: {fileID: 3241248960170364994}
   m_Layer: 0
   m_Name: Prototype Runner
   m_TagString: Untagged
@@ -131,16 +130,3 @@ MonoBehaviour:
   IsSceneTakeOverEnabled: 1
   LogSceneLoadErrors: 1
   DestroySpawnedPrefabsOnSceneUnload: 1
---- !u!114 &3241248960170364994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730880953977721558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937d63d030f9dd948b5a23cad8cc3274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleMultiplayer
-  runnerPrefab: {fileID: 4205123310691117728}

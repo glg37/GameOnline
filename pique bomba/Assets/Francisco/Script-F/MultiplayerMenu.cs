@@ -28,7 +28,6 @@ public class MultiplayerMenu : MonoBehaviour
 
     void Start()
     {
-        
         if (painelSala != null)
         {
             painelSala.SetActive(false);
@@ -40,16 +39,12 @@ public class MultiplayerMenu : MonoBehaviour
         }
     }
 
-    
-
     public void AbrirPainelSala()
     {
         painelSala.SetActive(true);
 
         animatorSala.SetTrigger("Abrir");
     }
-
-
 
     public void FecharPainelSala()
     {
@@ -63,16 +58,12 @@ public class MultiplayerMenu : MonoBehaviour
         painelSala.SetActive(false);
     }
 
-
-
     public void AbrirCreditos()
     {
         painelCreditos.SetActive(true);
 
         animatorCreditos.SetTrigger("Abrir");
     }
-
-
 
     public void FecharCreditos()
     {
@@ -86,10 +77,14 @@ public class MultiplayerMenu : MonoBehaviour
         painelCreditos.SetActive(false);
     }
 
-
     public async void CriarSala()
     {
-        
+        if (FindFirstObjectByType<NetworkRunner>() != null)
+        {
+            Debug.Log("Runner já existe!");
+            return;
+        }
+
         string nomeJogador = inputNome.text;
 
         if (string.IsNullOrWhiteSpace(nomeJogador))
@@ -97,7 +92,6 @@ public class MultiplayerMenu : MonoBehaviour
             nomeJogador = "Player";
         }
 
-        
         string nomeSala = inputCriarSala.text;
 
         if (string.IsNullOrWhiteSpace(nomeSala))
@@ -106,15 +100,14 @@ public class MultiplayerMenu : MonoBehaviour
             return;
         }
 
-       
         PlayerPrefs.SetString("PlayerName", nomeJogador);
 
-       
         runner = Instantiate(runnerPrefab);
+
+        DontDestroyOnLoad(runner.gameObject);
 
         runner.ProvideInput = true;
 
-        
         var result = await runner.StartGame(new StartGameArgs()
         {
             GameMode = GameMode.Shared,
@@ -126,17 +119,24 @@ public class MultiplayerMenu : MonoBehaviour
             SceneManager = runner.GetComponent<NetworkSceneManagerDefault>()
         });
 
-        if (!result.Ok)
+        if (result.Ok)
         {
-            Debug.Log("Erro ao criar sala!");
+            Debug.Log("Sala criada com sucesso!");
+        }
+        else
+        {
+            Debug.LogError("Erro ao criar sala: " + result.ShutdownReason);
         }
     }
 
-   
-
     public async void EntrarSala()
     {
-      
+        if (FindFirstObjectByType<NetworkRunner>() != null)
+        {
+            Debug.Log("Runner já existe!");
+            return;
+        }
+
         string nomeJogador = inputNome.text;
 
         if (string.IsNullOrWhiteSpace(nomeJogador))
@@ -152,15 +152,14 @@ public class MultiplayerMenu : MonoBehaviour
             return;
         }
 
-       
         PlayerPrefs.SetString("PlayerName", nomeJogador);
 
-     
         runner = Instantiate(runnerPrefab);
+
+        DontDestroyOnLoad(runner.gameObject);
 
         runner.ProvideInput = true;
 
-       
         var result = await runner.StartGame(new StartGameArgs()
         {
             GameMode = GameMode.Shared,
@@ -174,17 +173,18 @@ public class MultiplayerMenu : MonoBehaviour
             EnableClientSessionCreation = false
         });
 
-        if (!result.Ok)
+        if (result.Ok)
         {
-            Debug.Log("Sala não existe!");
+            Debug.Log("Entrou na sala!");
+        }
+        else
+        {
+            Debug.LogError("Sala não existe!");
         }
     }
 
-
     public void SairJogo()
     {
-        Debug.Log("Saiu do jogo");
-
         Application.Quit();
     }
 }

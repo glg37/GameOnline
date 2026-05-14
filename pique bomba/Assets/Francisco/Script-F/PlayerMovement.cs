@@ -12,7 +12,7 @@ public class PlayerMovement : NetworkBehaviour
     [Header("Pulo")]
     public float jumpForce = 7f;
 
-    [Header("Refer�ncias")]
+    [Header("Referências")]
     public Transform cameraHolder;
     public Camera playerCamera;
 
@@ -26,8 +26,12 @@ public class PlayerMovement : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
+        Debug.Log("Player spawnou!");
+
         if (Object.HasInputAuthority)
         {
+            Debug.Log("Sou o player local!");
+
             playerCamera.gameObject.SetActive(true);
 
             Cursor.lockState = CursorLockMode.Locked;
@@ -69,10 +73,10 @@ public class PlayerMovement : NetworkBehaviour
 
         Vector3 velocity = move * speed;
 
-        // Mant�m a velocidade vertical do pulo/gravidade
-        velocity.y = rb.linearVelocity.y;
+        // mantém velocidade vertical
+        velocity.y = rb.velocity.y;
 
-        rb.linearVelocity = velocity;
+        rb.velocity = velocity;
     }
 
     void MouseLook()
@@ -83,13 +87,10 @@ public class PlayerMovement : NetworkBehaviour
         float mouseY =
             Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        // Esquerda e direita
         transform.Rotate(Vector3.up * mouseX);
 
-        // Cima e baixo
         xRotation -= mouseY;
 
-        // Limita a vis�o vertical
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         cameraHolder.localRotation =

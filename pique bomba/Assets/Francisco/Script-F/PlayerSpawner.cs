@@ -7,8 +7,12 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 
     public void PlayerJoined(PlayerRef player)
     {
+        Debug.Log("Player entrou!");
+
         if (player == Runner.LocalPlayer)
         {
+            Debug.Log("Spawnando player local!");
+
             Runner.Spawn(
                 playerPrefab,
                 new Vector3(0, 3, 0),

@@ -112,9 +112,48 @@ namespace StarterAssets
 		}
         public override void Spawned()
         {
-            if (!Object.HasInputAuthority)
+            Camera mainCam = GetComponentInChildren<Camera>(true);
+
+            GameObject cinemachineCam =
+                GameObject.Find("PlayerFollowCamera");
+
+            if (Object.HasInputAuthority)
             {
-                enabled = false;
+                Debug.Log("Player Local");
+
+                if (mainCam != null)
+                {
+                    mainCam.gameObject.SetActive(true);
+                }
+
+                if (cinemachineCam != null)
+                {
+                    cinemachineCam.SetActive(true);
+                }
+            }
+            else
+            {
+                Debug.Log("Player Remoto");
+
+                if (mainCam != null)
+                {
+                    mainCam.gameObject.SetActive(false);
+                }
+
+                if (cinemachineCam != null)
+                {
+                    cinemachineCam.SetActive(false);
+                }
+
+#if ENABLE_INPUT_SYSTEM
+                PlayerInput input =
+                    GetComponent<PlayerInput>();
+
+                if (input != null)
+                {
+                    input.enabled = false;
+                }
+#endif
             }
         }
 
