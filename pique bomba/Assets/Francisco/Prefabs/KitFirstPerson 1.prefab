@@ -305,6 +305,7 @@ MonoBehaviour:
   - {fileID: 1681255698584884949}
   - {fileID: 8977622331550734857}
   - {fileID: 1987160685607338989}
+  - {fileID: 8742142282836434512}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6061248370421959374
 MonoBehaviour:
@@ -721,6 +722,7 @@ GameObject:
   - component: {fileID: 6351647242154720988}
   - component: {fileID: 5010263656151042542}
   - component: {fileID: 1987160685607338989}
+  - component: {fileID: 8742142282836434512}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -952,6 +954,20 @@ MonoBehaviour:
   braking: 10
   maxSpeed: 2
   rotationSpeed: 15
+--- !u!114 &8742142282836434512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200347491704785260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ecefdb7d629a242b83cc974023b7c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerColor
+  _CorIndex: 0
+  playerRenderer: {fileID: 6090581033711527507}
 --- !u!1 &7363524485115235880
 GameObject:
   m_ObjectHideFlags: 0
