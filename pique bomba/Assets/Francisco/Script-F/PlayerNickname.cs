@@ -7,6 +7,9 @@ public class PlayerNickname : NetworkBehaviour
     [Header("Texto 3D")]
     public TMP_Text nomeTexto;
 
+    [Header("Referência do Display")]
+    public Transform nameDisplay; // Arraste o NameDisplay aqui
+
     [Networked]
     public NetworkString<_16> NomeJogador { get; set; }
 
@@ -14,9 +17,17 @@ public class PlayerNickname : NetworkBehaviour
     {
         if (Object.HasInputAuthority)
         {
-            NomeJogador = PlayerPrefs.GetString("PlayerName", "Player");
+            string nome = PlayerPrefs.GetString("PlayerName", "Player");
+            RPC_DefinirNome(nome);
         }
 
+        AtualizarNome();
+    }
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    private void RPC_DefinirNome(string nome)
+    {
+        NomeJogador = nome;
         AtualizarNome();
     }
 
@@ -27,15 +38,18 @@ public class PlayerNickname : NetworkBehaviour
 
     void AtualizarNome()
     {
-        nomeTexto.text = NomeJogador.ToString();
+        if (nomeTexto != null)
+        {
+            nomeTexto.text = NomeJogador.ToString();
+        }
     }
 
     void LateUpdate()
     {
-        if (Camera.main != null)
+        if (Camera.main != null && nameDisplay != null)
         {
             // Faz o texto olhar para a câmera
-            nomeTexto.transform.forward = Camera.main.transform.forward;
+            nameDisplay.forward = Camera.main.transform.forward;
         }
     }
 }
